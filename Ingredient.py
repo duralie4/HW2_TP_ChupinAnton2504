@@ -9,11 +9,11 @@ class Ingredient:
         return self.quantity
 
     @quantity.setter
-    def quantity(self, quantity : float) -> None:
-        if quantity < 0:
-            raise ValueError("Количество должно быть неотрицательным")
+    def quantity(self, value : float) -> None:
+        if value <= 0:
+            raise ValueError("Количество должно быть положительным")
         else:
-            self.quantity = quantity
+            self.quantity = value
 
     def __str__(self) -> str:
         return f"{self.name}: {self.quantity} {self.unit}"
