@@ -15,11 +15,11 @@ class Ingredient:
         else:
             self.quantity = quantity
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}: {self.quantity} {self.unit}"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Ingredient('{self.name}', {self.quantity}, '{self.unit}')"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return (self.name == other.name) and (self.unit == other.unit)

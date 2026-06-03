@@ -16,7 +16,7 @@ class Recipe:
     def is_valid_ratio(ratio: float) -> bool:
         return isinstance(ratio, (int, float)) and ratio > 0
 
-    def scale(self, ratio: float):
+    def scale(self, ratio: float) -> "Recipe":
         new_ingredients = []
         for ingredient in self.ingredients:
             new_ingredients.append(Ingredient(ingredient.name, ingredient.quantity * ratio, ingredient.unit))
@@ -25,5 +25,5 @@ class Recipe:
     def __len__(self) -> int:
         return len(self.ingredients)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title + "\n" + "\n".join(repr(i) for i in self.ingredients)
