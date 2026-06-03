@@ -17,6 +17,8 @@ class Recipe:
         return isinstance(ratio, (int, float)) and ratio > 0
 
     def scale(self, ratio: float) -> "Recipe":
+        if not self.is_valid_ratio(ratio):
+            raise ValueError("Коэффициент должен быть положительным")
         new_ingredients = []
         for ingredient in self.ingredients:
             new_ingredients.append(Ingredient(ingredient.name, ingredient.quantity * ratio, ingredient.unit))
