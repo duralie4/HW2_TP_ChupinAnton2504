@@ -31,7 +31,7 @@ def test_eq_of_diff_unit():
 def test_recipe_creation():
     ingredients = [Ingredient("Мука", 500.0, "г")]
     recipe = Recipe("Пицца Маргарита", ingredients)
-    assert recipe.title == "Пиццы Маргарита"
+    assert recipe.title == "Пицца Маргарита"
     assert recipe.ingredients == ingredients
 
 def test_add_new_ingredient():
@@ -77,7 +77,7 @@ def test_add_recipe():
     recipe = Recipe("Пицца Маргарита", [Ingredient("Мука", 500.0, "г"),
                                         Ingredient("Сыр", 100.0, "г")])
     sl.add_recipe(recipe, 1)
-    assert len(sl._items) == 1
+    assert len(sl._items) == 2
     assert sl._items[0][0].name == "Мука"
     assert sl._items[0][1] == "Пицца Маргарита"
 
@@ -97,8 +97,8 @@ def test_remove_recipe_ingredients():
     sl.add_recipe(Recipe("Летний салатик", [Ingredient("Огурцы", 200.0, "г"),
                                           Ingredient("Помидоры", 200.0, "г"),
                                           Ingredient("Лук репчатый", 100.0, "г")]), 1)
-    sl.remove_recipe("Пиццы Маргарита")
-    assert len(sl._items) == 1
+    sl.remove_recipe("Пицца Маргарита")
+    assert len(sl._items) == 3
     assert sl._items[0][1] == "Летний салатик"
 
 def test_remove_not_existed_recipe():
@@ -106,7 +106,7 @@ def test_remove_not_existed_recipe():
     sl.add_recipe(Recipe("Пицца Маргарита", [Ingredient("Мука", 500.0, "г"),
                                           Ingredient("Сыр", 100.0, "г")]), 1)
     sl.remove_recipe("Суп")
-    assert len(sl._items) == 1
+    assert len(sl._items) == 2
 
 def test_get_list_sum_of_same_ings():
     sl = ShoppingList()
@@ -116,7 +116,7 @@ def test_get_list_sum_of_same_ings():
                                           Ingredient("Сыр", 100.0, "г"),
                                          Ingredient("Соус Песто", 50.0, "г")]), 1)
     result = sl.get_list()
-    assert len(result) == 1
+    assert len(result) == 3
     assert result[0].name == "Мука"
     assert result[0].quantity == 1000.0
 
@@ -139,7 +139,7 @@ def test_add_combines():
                                           Ingredient("Помидоры", 200.0, "г"),
                                           Ingredient("Лук репчатый", 100.0, "г")]), 1)
     sl3 = sl1 + sl2
-    assert len(sl3._items) == 2
+    assert len(sl3._items) == 6
 
 def test_add_does_not_change_ogs():
     sl1 = ShoppingList()
@@ -151,6 +151,6 @@ def test_add_does_not_change_ogs():
                                              Ingredient("Помидоры", 200.0, "г"),
                                              Ingredient("Лук репчатый", 100.0, "г")]), 1)
     sl3 = sl1 + sl2
-    assert len(sl1._items) == 1
-    assert len(sl2._items) == 1
-    assert len(sl3._items) == 2
+    assert len(sl1._items) == 3
+    assert len(sl2._items) == 3
+    assert len(sl3._items) == 6

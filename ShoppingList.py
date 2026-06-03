@@ -1,3 +1,5 @@
+from encodings.punycode import selective_find
+
 from Ingredient import Ingredient
 from Recipe import Recipe
 
@@ -13,11 +15,7 @@ class ShoppingList:
             self._items.append((ingredient, recipe.title))
 
     def remove_recipe(self, title: str) -> None:
-        for item in self._items:
-            if item[1] == title:
-                self._items.remove(item)
-            else:
-                pass
+        self._items = [item for item in self._items if item[1] != title]
 
     def get_list(self):
         total = {}
